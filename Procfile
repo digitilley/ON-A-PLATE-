@@ -1,1 +1,1 @@
-web: gunicorn ON-A-PLATE-.wsgi
+web: gunicorn on_a_plate.wsgi

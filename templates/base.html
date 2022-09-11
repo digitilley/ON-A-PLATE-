@@ -21,17 +21,20 @@
             <a href="index.html" class="col-6 navbar-brand d-flex align-items-center nav-link">
               <strong>ON A PLATE</strong>
             </a>
-            <div class="navbar-collapse collapse show" id="navmenu" style>
+            <div class="navbar-collapse collapse" id="navmenu" style>
               <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">HOME</a>
+                    <a href="{% url 'account_logout' %}" class="nav-link">LOGOUT</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'account_signup' %}" class="nav-link">REGISTER</a>
                 </li>
                 <li class="nav-item">
-                    <a href="login.html" class="nav-link">LOG IN</a>
+                  <a href="{% url 'account_login' %}" class="nav-link">LOGIN</a>
                 </li>
-                <li class="nav-item">
-                    <a href="register.html" class="nav-link">REGISTER</a>
-                </li>
+                {% endif %}
               </ul>
             </div>
           </div>

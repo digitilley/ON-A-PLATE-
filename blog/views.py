@@ -32,9 +32,8 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-    
-    def post(self, request, slug, *args, **kwargs):
 
+    def post(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by("-created_on")
@@ -43,6 +42,7 @@ class PostDetail(View):
             liked = True
 
         comment_form = CommentForm(data=request.POST)
+
         if comment_form.is_valid():
             comment_form.instance.email = request.user.email
             comment_form.instance.name = request.user.username
@@ -50,7 +50,7 @@ class PostDetail(View):
             comment.post = post
             comment.save()
         else:
-            comment_form = CommentForm()
+            comment_form = CommentForm()    
 
         return render(
             request,
@@ -59,7 +59,7 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "commented": True,
-                "comment_form": comment_form,
-                "liked": liked
+                "liked": liked,
+                "comment_form": CommentForm()
             },
         )

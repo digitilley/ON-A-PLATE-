@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/1dcfe25940.js" crossorigin="anonymous"></script>
+    <title>On A Plate</title>
+</head>
+
+<body class="d-flex flex-column h-100 main-bg">
+
+    <!-- Navigation -->
+
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-lg align-items-center bg-dark shadow-sm">
+          <div class="container">
+            <a href="index.html" class="col-6 navbar-brand d-flex align-items-center nav-link">
+              <strong>ON A PLATE</strong>
+            </a>
+            <div class="navbar-collapse collapse show" id="navmenu" style>
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="login.html" class="nav-link">LOG IN</a>
+                </li>
+                <li class="nav-item">
+                    <a href="register.html" class="nav-link">REGISTER</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    <main class="flex-shrink-0 main-bg">
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark">
+        <div class="container py-2">
+            <div class="text-center text-white">
+                <ul class="socialmedia-links mb-0 list-unstyled d-flex display-inline justify-content-center">
+                    <li class="p-2"><a class="text-center text-white" href="https://youtube.com" target="_blank" rel="noopener" aria-label="Visit our Youtube page (opens in a new tab)"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li class="p-2"><a class="text-center text-white" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Visit our Instagram page (opens in a new tab)"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="p-2"><a class="text-center text-white" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="p-2"><a class="text-center text-white" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Visit our Twitter page (opens in a new tab)"><i class="fa-brands fa-twitter"></i></i></a></li>
+                </ul>
+            </div>
+            <div class="text-center text-white">
+              <span class="mb-3 mb-md-0">© 2022 On a Plate, Inc</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

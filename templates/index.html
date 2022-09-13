@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<main>
+<main d-flex min-vh-100 container-fluid justify-content-center align-items-center text-center>
     <section class="container py-5 text-center" >
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -24,10 +24,10 @@
 
         <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
-          <div class="row">
+          <div class="row pb-4">
             {% for post in post_list %}
             <div class="col-md-4">
-              <div class="card mb-4">
+              <div class="card mb-4 h-100 gy-3">
                 <div class="card-body">
                   <div class="image-container">
                     {% if "placeholder" in post.featured_image_url %}
@@ -39,7 +39,7 @@
                       <p class="author">Author: {{ post.author }}</p>
                     </div>
                   </div>
-                  <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                  <a href="{% url 'post_detail' post.slug %}" class="post-link text-decoration-none text-dark">
                     <h2 class="card-title">{{ post.title }}</h2>
                     <p class="card-text">{{ post.excerpt }}</p>
                   </a>

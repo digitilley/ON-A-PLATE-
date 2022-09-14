@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostList(generic.ListView):
@@ -14,34 +15,34 @@ class PostList(generic.ListView):
 
 class PostDetail(View):
 
-    def get(self, request, slug, *args, **kwargs):
+    def get_post_details(self, slug):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comments = post.comments.filter(approved=True).order_by("-created_on")
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        liked = post.likes.filter(id=self.request.user.id).exists()
+        return {
+            "post": post,
+            "comments": comments,
+            "liked": liked,
+        }
 
+    def get(self, request, slug, *args, **kwargs):
+        details = self.get_post_details(slug)
         return render(
             request,
             "post_detail.html",
             {
-                "post": post,
-                "comments": comments,
                 "commented": False,
-                "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                **details  # unpack dict into this dictionary
             },
         )
 
     def post(self, request, slug, *args, **kwargs):
-        queryset = Post.objects.filter(status=1)
-        post = get_object_or_404(queryset, slug=slug)
-        comments = post.comments.filter(approved=True).order_by("-created_on")
-        liked = False
-        if post.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        if not request.user.is_authenticated():
+            return redirect(reverse("login"))
 
+        details = self.get_post_details(slug)
         comment_form = CommentForm(data=request.POST)
 
         if comment_form.is_valid():
@@ -57,15 +58,15 @@ class PostDetail(View):
             request,
             "post_detail.html",
             {
-                "post": post,
-                "comments": comments,
                 "commented": True,
-                "liked": liked,
-                "comment_form": CommentForm()
+                "comment_form": CommentForm(),
+                **details
             },
         )
 
-class PostLike(View):
+class PostLike(LoginRequiredMixin, View):
+    login_url = reverse("login")
+    redirect_field_name = 'redirect_to'
 
     def post(self, request, slug):
         post = get_object_or_404(Post, slug=slug)

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.urls import reverse_lazy
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
@@ -40,7 +41,7 @@ class PostDetail(View):
 
     def post(self, request, slug, *args, **kwargs):
         if not request.user.is_authenticated():
-            return redirect(reverse("login"))
+            return redirect(_lazy("login"))
 
         details = self.get_post_details(slug)
         comment_form = CommentForm(data=request.POST)
@@ -65,7 +66,7 @@ class PostDetail(View):
         )
 
 class PostLike(LoginRequiredMixin, View):
-    login_url = reverse("login")
+    login_url = reverse_lazy("login")
     redirect_field_name = 'redirect_to'
 
     def post(self, request, slug):
@@ -76,4 +77,4 @@ class PostLike(LoginRequiredMixin, View):
         else:
             post.likes.add(request.user)
         
-        return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+        return HttpResponseRedirect(reverse_lazy('post_detail', args=[slug]))

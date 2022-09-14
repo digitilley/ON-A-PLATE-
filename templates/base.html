@@ -18,7 +18,7 @@
     <header>
         <nav class="navbar navbar-dark navbar-expand-lg align-items-center bg-dark shadow-sm">
           <div class="container">
-            <a href="index.html" class="col-6 navbar-brand d-flex align-items-center nav-link">
+            <a href="{% url 'home' %}" class="col-6 navbar-brand d-flex align-items-center nav-link">
               <strong>ON A PLATE</strong>
             </a>
             <div class="navbar-collapse collapse" id="navmenu" style>
@@ -72,6 +72,16 @@
                     <li class="p-2"><a class="text-center text-white" href="https://twitter.com" target="_blank" rel="noopener" aria-label="Visit our Twitter page (opens in a new tab)"><i class="fa-brands fa-twitter"></i></i></a></li>
                 </ul>
             </div>
+            <form action="https://gmail.us19.list-manage.com/subscribe/post?u=495c656328f99ddb3411b2c65&amp;id=d59a4db117" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate d-flex justify-content-center" target="_blank" novalidate="">
+              <div class="row text-center mb-2">
+                  <div class="col-12">
+                      <input type="email" name="EMAIL" class="form-control" id="inputEmail" placeholder="Enter email address..." required="">
+                  </div>
+                      <div class="col-12">
+                          <button type="submit" class="btn btn-primary btn-subscribe mx-auto mt-2">Subscribe</button>
+                      </div>
+                  </div>
+          </form>
             <div class="text-center text-white">
               <span class="mb-3 mb-md-0">© 2022 On a Plate, Inc</span>
             </div>

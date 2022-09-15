@@ -1,10 +1,21 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
+def search_recipes(request):
+    if request.method == "POST":
+        searched = request.POST.get('searched')
+        recipes = Post.objects.filter(title__contains=searched)
+        return render(request, 'search_recipes.html',
+        {'searched':searched, 'recipes':recipes})
+    else:
+        return render(request, 'search_recipes.html',
+        {})
 
 
 class PostList(generic.ListView):
@@ -80,7 +91,4 @@ class PostLike(LoginRequiredMixin, View):
         return HttpResponseRedirect(reverse_lazy('post_detail', args=[slug]))
 
 
-def search_recipes(request):
-
-    return render(request, 'search_recipes.html',
-    {})
+    

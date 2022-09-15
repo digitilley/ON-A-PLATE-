@@ -46,19 +46,3 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment {self.body} by {self.name}"
 
-"""
-class Recipe(models.Model):
-    title = models.CharField(max_length=150)
-    slug = models.SlugField(max_length=150)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="recipe_posts")
-    author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="recipe_posts")
-    servings = models.IntegerField()
-    # ingredients = models.ManyToManyField(Ingredient)
-    ingredients = models.TextField(helptext="Enter each ingredient on a new line")
-    created_on = models.DateTimeField(auto_now_add=True)
-    updated_on = models.DateTimeField(auto_now=True)
-    recipe_image = models.ImageField(upload_to='images/', blank=True)
-    public = models.BooleanField(default=False)
-    favourites = models.ManyToManyField(Profile, blank=True, related_name="recipe_favourites")
-    likes = models.ManyToManyField(Profile, related_name="recipe_likes", blank=True)
-    """

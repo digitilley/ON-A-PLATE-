@@ -2,19 +2,20 @@
 
 {% block content %}
 
-<main d-flex min-vh-100 container-fluid justify-content-center align-items-center text-center>
+<main class="">
     <section class="container py-5 text-center" >
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="mb-5 fw-light">RECIPES FOR FOODIES</h1>
           <p class="lead text-muted">Browse, like and comment on your favourite ON A PLATE recipes</p>
           <!-- https://mdbootstrap.com/docs/standard/forms/search/ -->
-          <div class="d-flex">
+          <form class="d-flex" method="POST" action="{% url 'search_recipes' %}">
+            {% csrf_token %}
             <input type="search" class="form-control me-2" placeholder="Search ON A PLATE" aria-label="Search" aria-describedby="search-recipe"/>
-            <button class="input-group-text border-0" id="search-recipe" type="submit">
+            <button class="btn input-group-text btn-outline-secondary" id="search-recipe" type="submit">
               <i class="fas fa-search"></i>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>

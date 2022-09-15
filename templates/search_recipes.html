@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main>
+    <section class="container d-flex min-vh-100 justify-content-center">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="mb-5 fw-light">You searched for...</h1>
+          <!-- https://mdbootstrap.com/docs/standard/forms/search/ -->
+          <form class="d-flex" method="POST" action="{% url 'search_recipes' %}">
+            {% csrf_token %}
+            <input type="search" class="form-control me-2" placeholder="Search ON A PLATE" aria-label="Search" aria-describedby="search-recipe"/>
+            <button class="btn input-group-text btn-outline-secondary" id="search-recipe" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+</main>
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

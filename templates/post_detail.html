@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %}
 
 <div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
+    <div class="container py-lg-5">
+        <div class="text-center py-md-5 fw-bold">
+            <div class="text-center py-md-5 fw-bold">
                 <!-- Post title goes in these h1 tags -->
                 <h1 class="post-title">{{ post.title }}</h1>
                 <!-- Post author goes before the | the post's created date goes after -->
@@ -25,7 +25,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col card mb-4  mt-3 left  top">
+        <div class="col card mb-4  mt-3 left top">
             <div class="card-body">
                 <!-- The post content goes inside the card-text. -->
                 <!-- Use the | safe filter inside the template tags -->
@@ -88,6 +88,16 @@
                 </div>
                 <!-- Our for loop ends here -->
                 {% endfor %}
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div>
+                
             </div>
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">

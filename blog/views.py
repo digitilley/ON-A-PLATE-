@@ -78,3 +78,9 @@ class PostLike(LoginRequiredMixin, View):
             post.likes.add(request.user)
         
         return HttpResponseRedirect(reverse_lazy('post_detail', args=[slug]))
+
+
+def search_recipes(request):
+
+    return render(request, 'search_recipes.html',
+    {})

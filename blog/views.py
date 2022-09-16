@@ -7,14 +7,14 @@ from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def search_recipes(request):
+def search_posts(request):
     if request.method == "POST":
-        searched = request.POST.get('searched')
-        recipes = Post.objects.filter(title__contains=searched)
-        return render(request, 'search_recipes.html',
-        {'searched':searched, 'recipes':recipes})
+        searched = request.POST.get('searched','')
+        posts = Post.objects.filter(content__contains=searched)
+        return render(request, 'search_posts.html',
+        {'searched':searched, 'posts':posts})
     else:
-        return render(request, 'search_recipes.html',
+        return render(request, 'search_posts.html',
         {})
 
 

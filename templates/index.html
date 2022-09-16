@@ -9,7 +9,7 @@
           <h1 class="mb-5 fw-light">RECIPES FOR FOODIES</h1>
           <p class="lead text-muted">Browse, like and comment on your favourite ON A PLATE recipes</p>
           <!-- https://mdbootstrap.com/docs/standard/forms/search/ -->
-          <form class="d-flex" method="POST" action="{% url 'search_recipes' %}">
+          <form class="d-flex" method="POST" action="{% url 'search_posts' %}">
             {% csrf_token %}
             <input type="search" class="form-control me-2" placeholder="Search ON A PLATE" aria-label="Search" aria-describedby="search-recipe"/>
             <button class="btn input-group-text btn-outline-secondary" id="search-recipe" type="submit">

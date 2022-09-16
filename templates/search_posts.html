@@ -8,15 +8,14 @@
             <h1 class="mb-5 fw-light">You searched for {{ searched }}</h1>
             <br/>
             {% for post in posts %}
-            {{ post }}
-              </a>
-              <br/>
-            {% endfor %}
+              {{ posts }}
+            <br/>
+          {% endfor %}
           {% else %}
           <h1 class="mb-5 fw-light">You forgot to search for a recipe...</h1>
           {% endif %}
           <!-- https://mdbootstrap.com/docs/standard/forms/search/ -->
-          <form class="d-flex" method="POST" action="{% url 'search_recipes' %}">
+          <form class="d-flex" method="POST" action="{% url 'search_posts' %}">
 
             {% csrf_token %}
 

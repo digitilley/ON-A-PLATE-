@@ -8,7 +8,7 @@
             <h1 class="mb-5 fw-light">You searched for {{ searched }}</h1>
             <br/>
             {% for post in posts %}
-              {{ posts }}
+              <a href="{% url 'search_posts' post %}">{{ posts }}</a>
             <br/>
           {% endfor %}
           {% else %}

@@ -7,6 +7,12 @@ from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+def show_blogposts(request, blogpost_id):
+    blogpost = Post.objects.get(pk=blogpost_id)
+    return render(request, 'search_posts.html',
+        {'blogpost':blogpost})
+
+
 def search_posts(request):
     if request.method == "POST":
         searched = request.POST.get('searched','')
